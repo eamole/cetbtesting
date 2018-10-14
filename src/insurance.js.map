@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "insurance.js",
+  "sourceRoot": "",
+  "sources": [
+    "insurance.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,MAAA;;EA0BA,kBAAA,GAAqB,QAAA,CAAC,cAAD,EAAkB,cAAlB,EAAmC,WAAnC,CAAA;AAEnB,QAAA;IAAA,WAAA,GAAc;IACd,IAAG,cAAH;MACE,IAAG,cAAH;QACE,IAAG,WAAH;UACE,WAAA,GAAc,oBADhB;SAAA,MAAA;UAGE,WAAA,GAAc,kBAHhB;SADF;OAAA,MAAA;;QAOE,WAAA,GAAc,cAPhB;OADF;KAAA,MAAA;;MAWE,WAAA,GAAc,cAXhB;;AAaA,WAAO;EAhBY;;EAmBrB,MAAM,CAAC,OAAP,GAAiB;AA7CjB",
+  "sourcesContent": [
+    "###\r\n\r\n  Insurance company offering benefit/dividents to policy holders, who have \"with benefits\" policies, especially those who have held\r\n  policy since 2001\r\n\r\n  inputs\r\n  isPolicyHolder\r\n  isWithBenefits\r\n  isSince2001\r\n\r\n  note wew convert the date of the policy to a simple boolean (yes/no) to reduce the logic in the\r\n  decision tables, and in the code\r\n\r\n  outputs\r\n  eligibleForCash\r\n  eligibleForShares\r\n  notEligible\r\n\r\n  the system doesn't compute the actual value, only the eligibility\r\n  the outputs are mutually exclusive, but there is a third output where the customer (policy holder or not)\r\n  is not eligible for anything\r\n\r\n  we will return the values as strings\r\n\r\n###\r\n\r\ncomputeEligibility = (isPolicyHolder , isWithBenefits , isSince2001 ) ->\r\n\r\n  eligibility = \"\"\r\n  if isPolicyHolder\r\n    if isWithBenefits\r\n      if isSince2001\r\n        eligibility = \"eligibleForShares\"\r\n      else\r\n        eligibility = \"eligibleForCash\"\r\n    else\r\n      # must be \"with benefits\"\r\n      eligibility = \"notEligible\"\r\n  else\r\n    # must be a current policy holder\r\n    eligibility = \"notEligible\"\r\n\r\n  return eligibility\r\n\r\n\r\nmodule.exports = computeEligibility"
+  ]
+}

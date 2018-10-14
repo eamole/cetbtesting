@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "supermarket.js",
+  "sourceRoot": "",
+  "sources": [
+    "supermarket.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA,WAAA,EAAA;;EAAA,MAAA,GAAS,OAAA,CAAQ,MAAR,CAAe,CAAC;;EACzB,WAAA,GAAc,OAAA,CAAQ,oBAAR;;EAEd,QAAA,CAAS,aAAT,EAAwB,QAAA,CAAA,CAAA;WACtB,QAAA,CAAS,oBAAT,EAAgC,QAAA,CAAA,CAAA,EAAA;;MAE9B,QAAA,CAAS,sBAAT,EAAkC,QAAA,CAAA,CAAA;AAChC,YAAA;QAAA,mBAAA,GAAsB;QAEtB,EAAA,CAAG,qEAAH,EAA2E,QAAA,CAAA,CAAA;iBACzE,MAAA,CAAO,WAAW,CAAC,kBAAZ,CAA+B,KAA/B,EAAqC,mBAArC,EAAyD,IAAzD,CAAP,EAAwE,eAAxE;QADyE,CAA3E;eAGA,EAAA,CAAG,6DAAH,EAAmE,QAAA,CAAA,CAAA;iBACjE,MAAA,CAAO,WAAW,CAAC,kBAAZ,CAA+B,KAA/B,EAAqC,mBAArC,EAAyD,KAAzD,CAAP,EAAyE,QAAzE;QADiE,CAAnE;MANgC,CAAlC;aASA,QAAA,CAAS,gBAAT,EAA4B,QAAA,CAAA,CAAA;AAC1B,YAAA;QAAA,mBAAA,GAAsB;QAEtB,EAAA,CAAG,0BAAH,EAAgC,QAAA,CAAA,CAAA;iBAC9B,MAAA,CAAO,WAAW,CAAC,kBAAZ,CAA+B,GAA/B,EAAmC,mBAAnC,EAAuD,KAAvD,CAAP,EAAuE,YAAvE;QAD8B,CAAhC;eAGA,EAAA,CAAG,yBAAH,EAA+B,QAAA,CAAA,CAAA;iBAC7B,MAAA,CAAO,WAAW,CAAC,kBAAZ,CAA+B,GAA/B,EAAmC,mBAAnC,EAAuD,KAAvD,CAAP,EAAuE,UAAvE;QAD6B,CAA/B;MAN0B,CAA5B;IAX8B,CAAhC;EADsB,CAAxB;AAHA",
+  "sourcesContent": [
+    "assert = require(\"chai\").assert\r\nSupermarket = require \"../src/supermarket\"\r\n\r\ndescribe \"Supermarket\", ->\r\n  describe \"Simple Transaction\" , ->\r\n    # generate the 4 test cases\r\n    describe \"Loyalty Card Holders\" , ->\r\n      isLoyaltyCardHolder = true\r\n\r\n      it \"should return extraDiscount - loyalty card holder, prefers discount\" , ->\r\n        assert Supermarket.processTransaction(\"XXX\",isLoyaltyCardHolder,true) , \"extraDiscount\"\r\n\r\n      it \"should return points - loyalty card holder, point preferred\" , ->\r\n        assert Supermarket.processTransaction(\"XXX\",isLoyaltyCardHolder,false) , \"points\"\r\n\r\n    describe \"Cash Customers\" , ->\r\n      isLoyaltyCardHolder = false\r\n\r\n      it \"should return noDiscount\" , ->\r\n        assert Supermarket.processTransaction(100,isLoyaltyCardHolder,\"XXX\") , \"noDiscount\"\r\n\r\n      it \"should return discount \" , ->\r\n        assert Supermarket.processTransaction(101,isLoyaltyCardHolder,\"XXX\") , \"discount\"\r\n"
+  ]
+}

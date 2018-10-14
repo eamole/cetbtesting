@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sourceRoot": "",
+  "sources": [
+    "index.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA;EACA,MAAM,CAAC,GAAP,GAAa,CAAA;;EACb,MAAM,CAAC,IAAP,GAAc,CAAA;AAFd",
+  "sourcesContent": [
+    "# declare the global namespaces\r\nwindow.App = {}\r\nwindow.Test = {}"
+  ]
+}
