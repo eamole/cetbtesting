@@ -14,18 +14,18 @@
     return describe("Eligibility Calcs", function() {
       // the big split
       describe("Current Policy Holder", function() {
-        it("full benefits - should offer shares", function() {
+        it("should offer shares : full benefits", function() {
           return assert(computeEligibility(true, true, true), "eligibleForShares");
         });
-        it("not since 2001 - cash only ", function() {
+        it("should return cash only : not since 2001", function() {
           return assert(computeEligibility(true, true, false), "eligibleForCash");
         });
-        return it("not with benefits - ineligible ", function() {
+        return it("should return notEligible - not 'with benefits' policy", function() {
           return assert(computeEligibility(true, false, "XXX"), "notEligible");
         });
       });
       return describe("Not A Current Policy Holder", function() {
-        return it("not current - ineligible ", function() {
+        return it("should return notEligible - not current policyholder", function() {
           return assert(computeEligibility(false, "XXX", "XXX"), "notEligible");
         });
       });

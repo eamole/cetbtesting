@@ -24,14 +24,14 @@
   Watch = (function() {
     // this is the controller
     class Watch {
-      // the send the set button to the current mode
-      static setButton() {
-        return this.mode.setButton();
-      }
-
-      // send the set button to the current mode
+      // send the MODE button to the current mode
       static modeButton() {
         return this.mode.modeButton();
+      }
+
+      // send the SET button to the current mode
+      static setButton() {
+        return this.mode.setButton();
       }
 
     };
@@ -51,7 +51,8 @@
   //# displays the time
   TimeMode = class TimeMode {
     static modeButton() {
-      return Watch.mode = AltMode;
+      Watch.mode = AltMode;
+      return Watch.mode;
     }
 
     static setButton() {
@@ -66,12 +67,12 @@
       return Watch.mode = TimeMode;
     }
 
-    static setButton() {}
+    static setButton() {
+      // nothing happens
+      return AltMode;
+    }
 
   };
-
-  // nothing happens
-  // Watch.mode = AltMode
 
   // sets the hours
   HrsMode = class HrsMode {
@@ -80,7 +81,8 @@
     }
 
     static setButton() {
-      return Watch.hrs++; // increment the hours
+      Watch.hrs++; // increment the hours
+      return HrsMode; // same mode
     }
 
   };
@@ -93,7 +95,8 @@
     }
 
     static setButton() {
-      return Watch.mins++; // increment the hours
+      Watch.mins++; // increment the hours
+      return MinsMode; // same mode
     }
 
   };

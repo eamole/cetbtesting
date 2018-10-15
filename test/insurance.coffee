@@ -11,16 +11,16 @@ describe "Insurance Company Flotation" , ->
 # the big split
     describe "Current Policy Holder" , ->
 
-      it "full benefits - should offer shares" , ->
+      it "should offer shares : full benefits" , ->
         assert computeEligibility(true , true , true) , "eligibleForShares"
 
-      it "not since 2001 - cash only " , ->
+      it "should return cash only : not since 2001" , ->
         assert computeEligibility(true , true , false ) , "eligibleForCash"
 
-      it "not with benefits - ineligible " , ->
+      it "should return notEligible - not 'with benefits' policy" , ->
         assert computeEligibility(true , false  , "XXX" ) , "notEligible"
 
     describe "Not A Current Policy Holder" , ->
 
-      it "not current - ineligible " , ->
+      it "should return notEligible - not current policyholder" , ->
         assert computeEligibility(false , "XXX" , "XXX" ) , "notEligible"

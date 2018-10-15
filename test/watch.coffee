@@ -1,54 +1,56 @@
 assert = require("chai").assert
 
-Watch= require("../src/watch").Watch
-TimeMode= require("../src/watch").TimeMode
-AltMode= require("../src/watch").AltMode
-HrsMode= require("../src/watch").HrsMode
-MinsMode = require("../src/watch").MinsMode
+{Watch ,TimeMode, AltMode, HrsMode, MinsMode} = require("../src/watch")
 
-debugger
-watch = Watch
-watch.modeButton()
 
 describe "Watch", ->
   describe "Test BOTH Inputs in All States" , ->
     describe "Mode = TIME - test both inputs SET and MODE " , ->
-      Watch.mode = TimeMode # ensure correct mode
-      it "TIME <- [MODE] : should be ALT" , ->
-        assert Watch.modeButton() , AltMode
+      it "should be ALT : TIME <- [MODE] => ALT " , ->
+        Watch.mode = TimeMode # ensure correct mode
+        Watch.modeButton()
+        assert.equal Watch.mode , AltMode
 
-      Watch.mode = TimeMode # reset to correct mode
       it "TIME <- [SET] : should be HRS" , ->
-        assert Watch.setButton() , HrsMode
+        Watch.mode = TimeMode # reset to correct mode
+        assert.equal Watch.setButton() , HrsMode
 
     describe "Mode = ALT - test both inputs SET and MODE " , ->
-      Watch.mode = AltMode # ensure correct mode
-      it "ALT <- [MODE] : should be TIME" , ->
-        assert Watch.modeButton() , TimeMode
+      it "should be TIME : ALT <- [MODE]" , ->
+        Watch.mode = AltMode # ensure correct mode
+        assert.equal Watch.modeButton() , TimeMode
 
-      Watch.mode = AltMode # reset to correct mode
-      it "ALT <- [SET] : should be ALT - No action" , ->
-        assert Watch.setButton() , AltMode
+      it "should be ALT - No action : ALT <- [SET]" , ->
+        Watch.mode = AltMode # reset to correct mode
+        mode = AltMode
+        assert.equal Watch.setButton() , mode
+        ##
 
     describe "Mode = HRS - test both inputs SET and MODE " , ->
-      Watch.mode = HrsMode # ensure correct mode
-      it "HRS <- [MODE] : should be MINS" , ->
-        assert Watch.modeButton() , MinsMode
+      it "should be MINS : HRS <- [MODE]" , ->
+        Watch.mode = HrsMode # ensure correct mode
+        assert.equal Watch.modeButton() , MinsMode
 
-      Watch.mode = HrsMode # reset to correct mode
-      it "HRS <- [SET] : should be HRS - No change state" , ->
-        assert Watch.setButton() , HrsMode
-      it "HRS <- [SET] : change Watch.hours should be 1" , ->
-        assert Watch.hrs , 1
+      it "should be HRS - No change state HRS <- [SET]" , ->
+        Watch.mode = HrsMode # reset to correct mode
+        assert.equal Watch.setButton() , HrsMode
+      it "should change Watch.hours to 1 : HRS <- [SET], time = 00:00" , ->
+        assert.equal Watch.hrs , 1
+      it "change Watch.hours should be 2 : HRS <- [SET], time = 01:00 " , ->
+        Watch.setButton()     # call it again
+        assert.equal Watch.hrs , 2
 
     describe "Mode = MINS - test both inputs SET and MODE " , ->
-      Watch.mode = MinsMode # ensure correct mode
-      it "MINS <- [MODE] : should be TIME" , ->
-        assert Watch.modeButton() , TimeMode
+      it "should be TIME : MINS <- [MODE]" , ->
+        Watch.mode = MinsMode # ensure correct mode
+        assert.equal Watch.modeButton() , TimeMode
 
-      Watch.mode = MinsMode # reset to correct mode
-      it "MINS <- [SET] : should be MINS - No change state" , ->
-        assert Watch.setButton() , MinsMode
-      it "MINS <- [SET] : change Watch.Mins should be 1" , ->
-        assert Watch.mins , 1
+      it "should be MINS - No change state : MINS <- [SET] : " , ->
+        Watch.mode = MinsMode # reset to correct mode
+        assert.equal Watch.setButton() , MinsMode
+      it "should change Watch.to 1 : MINS <- [SET], time=02:00" , ->
+        assert.equal Watch.mins , 1
+      it "change Watch.Mins should be 2 : MINS <- [SET], time=02:01" , ->
+        Watch.setButton() # call it again
+        assert.equal Watch.mins , 2
 

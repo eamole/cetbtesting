@@ -26,19 +26,22 @@ class Watch
   @hrs : 0
   @mins : 0
 
-  # the send the set button to the current mode
+  # send the MODE button to the current mode
+  @modeButton : ->
+    @mode.modeButton()
+
+  # send the SET button to the current mode
   @setButton : ->
     @mode.setButton()
 
-  # send the set button to the current mode
-  @modeButton : ->
-    @mode.modeButton()
 
 
 ## displays the time
 class TimeMode
   @modeButton : ->
     Watch.mode = AltMode
+    Watch.mode
+
   @setButton : ->
     Watch.mode = HrsMode
 
@@ -48,7 +51,7 @@ class AltMode
     Watch.mode = TimeMode
   @setButton : ->
     # nothing happens
-    # Watch.mode = AltMode
+    AltMode
 
 # sets the hours
 class HrsMode
@@ -56,6 +59,7 @@ class HrsMode
     Watch.mode = MinsMode
   @setButton : ->
     Watch.hrs++ # increment the hours
+    HrsMode   # same mode
 
 # sets the minutes
 class MinsMode
@@ -63,6 +67,7 @@ class MinsMode
     Watch.mode = TimeMode
   @setButton : ->
     Watch.mins++ # increment the hours
+    MinsMode  # same mode
 
 ## the initial state of watch
 Watch.mode = TimeMode

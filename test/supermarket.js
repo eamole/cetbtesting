@@ -12,20 +12,20 @@
       describe("Loyalty Card Holders", function() {
         var isLoyaltyCardHolder;
         isLoyaltyCardHolder = true;
-        it("should return extraDiscount - loyalty card holder, prefers discount", function() {
+        it("should return extraDiscount : loyalty card holder, prefers discount", function() {
           return assert(Supermarket.processTransaction("XXX", isLoyaltyCardHolder, true), "extraDiscount");
         });
-        return it("should return points - loyalty card holder, point preferred", function() {
+        return it("should return points : loyalty card holder, point preferred", function() {
           return assert(Supermarket.processTransaction("XXX", isLoyaltyCardHolder, false), "points");
         });
       });
       return describe("Cash Customers", function() {
         var isLoyaltyCardHolder;
         isLoyaltyCardHolder = false;
-        it("should return noDiscount", function() {
+        it("should return noDiscount : spend <= 100 ", function() {
           return assert(Supermarket.processTransaction(100, isLoyaltyCardHolder, "XXX"), "noDiscount");
         });
-        return it("should return discount ", function() {
+        return it("should return discount : spend > 100", function() {
           return assert(Supermarket.processTransaction(101, isLoyaltyCardHolder, "XXX"), "discount");
         });
       });
