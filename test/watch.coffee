@@ -5,17 +5,17 @@ assert = require("chai").assert
 
 describe "Watch", ->
   describe "Test BOTH Inputs in All States" , ->
-    describe "Mode = TIME - test both inputs SET and MODE " , ->
+    describe "State/Mode = TIME - test both inputs SET and MODE " , ->
       it "should be ALT : TIME <- [MODE] => ALT " , ->
         Watch.mode = TimeMode # ensure correct mode
         Watch.modeButton()
         assert.equal Watch.mode , AltMode
 
-      it "TIME <- [SET] : should be HRS" , ->
+      it "should be HRS TIME <- [SET]" , ->
         Watch.mode = TimeMode # reset to correct mode
         assert.equal Watch.setButton() , HrsMode
 
-    describe "Mode = ALT - test both inputs SET and MODE " , ->
+    describe "State/Mode = ALT - test both inputs SET and MODE " , ->
       it "should be TIME : ALT <- [MODE]" , ->
         Watch.mode = AltMode # ensure correct mode
         assert.equal Watch.modeButton() , TimeMode
@@ -26,7 +26,7 @@ describe "Watch", ->
         assert.equal Watch.setButton() , mode
         ##
 
-    describe "Mode = HRS - test both inputs SET and MODE " , ->
+    describe "State/Mode = HRS - test both inputs SET and MODE " , ->
       it "should be MINS : HRS <- [MODE]" , ->
         Watch.mode = HrsMode # ensure correct mode
         assert.equal Watch.modeButton() , MinsMode
