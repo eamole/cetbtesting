@@ -2,6 +2,7 @@ assert = require("chai").assert
 Supermarket = require "../src/supermarket"
 
 describe "Supermarket", ->
+  
   describe "Simple Transaction" , ->
     # generate the 4 test cases
     describe "Loyalty Card Holders" , ->
